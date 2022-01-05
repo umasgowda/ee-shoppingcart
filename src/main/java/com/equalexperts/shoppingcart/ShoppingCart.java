@@ -31,9 +31,10 @@ public class ShoppingCart {
     public String getShoppingCartTotalPrice() {
         BigDecimal totalPrice = BigDecimal.ZERO;
         for(Product product: shoppingCartProducts) {
-            totalPrice = totalPrice.add(BigDecimal.valueOf(product.getQuantity()).multiply(product.getUnitPrice()));
+            BigDecimal itemPriceWithQuantity = BigDecimal.valueOf(product.getQuantity()).multiply(product.getUnitPrice());
+            totalPrice = totalPrice.add(itemPriceWithQuantity);
             this.totalPriceWithSalesTax = totalPrice.add(totalPrice.multiply(APPLICABLE_TAX_RATE));
-            this.totalSalesTax = this.totalSalesTax.add(BigDecimal.valueOf(product.getQuantity()).multiply(product.getUnitPrice()).multiply(APPLICABLE_TAX_RATE));
+            this.totalSalesTax = this.totalSalesTax.add(itemPriceWithQuantity.multiply(APPLICABLE_TAX_RATE));
         }
         return applyRoundRule(totalPriceWithSalesTax);
     }
