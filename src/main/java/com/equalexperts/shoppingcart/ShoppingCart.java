@@ -12,7 +12,7 @@ public class ShoppingCart {
     private BigDecimal totalSalesTax = BigDecimal.ZERO;
     private static final BigDecimal APPLICABLE_TAX_RATE = new BigDecimal("0.125"); //0.125 is equal to 12.5%
 
-    public List<Product> getShoppingCartProducts() {
+    public List<Product> showShoppingCartProducts() {
         return shoppingCartProducts;
     }
 
